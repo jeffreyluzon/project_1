@@ -6,30 +6,33 @@ const game = document.getElementById('canvas')
 
 let ctx = game.getContext('2d')
 game.setAttribute('height', '400px')
-game.setAttribute('width', '400px')
+game.setAttribute('width', '800px')
 
+function hero () {
+    ctx.fillStyle = 'white'
 
-ctx.fillStyle = 'white'
+    ctx.strokeStyle = 'red'
 
-ctx.strokeStyle = 'red'
+    ctx.lineWidth = 1
 
-ctx.lineWidth = 10
+    ctx.fillRect(10, 10, 30, 70);
+    ctx.strokeRect(10, 10, 30, 70);
+}
 
-ctx.fillRect(10, 10, 100, 100);
-ctx.strokeRect(10, 10, 100, 100);
 
 function drawBullet() {
-ctx.fillStyle = 'purple'
+    ctx.fillStyle = 'purple'
 
-ctx.strokeStyle = 'green'
+    ctx.strokeStyle = 'green'
 
-ctx.lineWidth = 10
+    ctx.lineWidth = 10
 
-ctx.fillRect(30, 15, 20, 20)
+    ctx.fillRect(30, 15, 10, 10)
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
     console.log('dom content loaded')  
+    hero()
     drawBullet()
     
 })
