@@ -3,12 +3,25 @@
 // randomly generate enemie across y axis at varying speeds
 
 const game = document.getElementById('canvas')
-
 let ctx = game.getContext('2d')
-game.setAttribute('height', '400px')
+let hero = {
+    x: 200,
+    y: 200,
+    width: 30,
+    height: 70,
+    render() {
+
+    }
+ 
+} 
+
+
+
+game.setAttribute('height', '600px')
 game.setAttribute('width', '800px')
 
-function hero () {
+function heroMovement () {
+
     ctx.fillStyle = 'white'
 
     ctx.strokeStyle = 'red'
