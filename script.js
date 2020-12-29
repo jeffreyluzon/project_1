@@ -15,7 +15,7 @@ let hero;
 //     }
  
 // } 
-function Hero (x, y, color, width, height) {
+function Crawler (x, y, color, width, height) {
     this.x = x
     this.y = y
     this.color = color
@@ -33,28 +33,25 @@ function Hero (x, y, color, width, height) {
 game.setAttribute('height', '600px')
 game.setAttribute('width', '800px')
 
-function heroMovement () {
+// function heroMovement () {
 
-    ctx.fillStyle = 'white'
+//     ctx.fillStyle = 'white'
 
-    ctx.strokeStyle = 'red'
+//     ctx.strokeStyle = 'red'
 
-    ctx.lineWidth = 1
+//     ctx.lineWidth = 1
 
-    ctx.fillRect(10, 10, 30, 70);
-    ctx.strokeRect(10, 10, 30, 70);
+//     ctx.fillRect(10, 10, 30, 70);
+//     ctx.strokeRect(10, 10, 30, 70);
+// }
+
+
+function drawBullet() {
+// X and Y position of bullet change to hero.x hero.y
+    let bullet = new Crawler(200, 200, 'purple', 10, 10)
+    bullet.render()
 }
 
-
-// function drawBullet() {
-//     ctx.fillStyle = 'purple'
-
-//     ctx.strokeStyle = 'green'
-
-//     ctx.lineWidth = 10
-
-//     ctx.fillRect(30, 15, 10, 10)
-// }
 function gameLoop () {
     ctx.clearRect(0, 0, game.width, game.height)
     hero.render()
@@ -62,6 +59,7 @@ function gameLoop () {
 }
 
 function keyDownHandler(e) {
+    e.preventDefault()
     console.log(e.code)
     if (e.code === 'KeyW') {
         console.log('W pressed')
@@ -79,13 +77,17 @@ function keyDownHandler(e) {
         console.log('D pressed')
         hero.x += 10
     }
+    if (e.code === 'Space') {
+        console.log('boom')
+        drawBullet()
+    }
 }
 
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
     console.log('dom content loaded')  
-    hero = new Hero (50, 50 ,'red', 100, 100)
+    hero = new Crawler (50, 50 ,'red', 100, 100)
     gameLoop()
     document.addEventListener('keydown', keyDownHandler)
     // heroMovement()
