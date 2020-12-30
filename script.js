@@ -5,6 +5,7 @@
 const game = document.getElementById('canvas')
 let ctx = game.getContext('2d')
 let hero;
+let zombie;
 // let hero = {
 //     x: 200,
 //     y: 200,
@@ -65,6 +66,10 @@ function keyDownHandler(e) {
         console.log('W pressed')
         hero.y -= 10
     }
+        if (hero.y === 600) {
+            hero.y -= 0
+            console.log('stop')
+        }
     if (e.code === 'KeyA') {
         console.log('A pressed')
         hero.x -= 10
@@ -80,6 +85,7 @@ function keyDownHandler(e) {
     if (e.code === 'Space') {
         console.log('boom')
         drawBullet()
+    
     }
 }
 
@@ -87,9 +93,10 @@ function keyDownHandler(e) {
 
 document.addEventListener('DOMContentLoaded', ()=>{
     console.log('dom content loaded')  
-    hero = new Crawler (50, 50 ,'red', 100, 100)
+    hero = new Crawler (50, 50 ,'red', 30, 70)
     gameLoop()
     document.addEventListener('keydown', keyDownHandler)
+    
     // heroMovement()
     // drawBullet()
     
