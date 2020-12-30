@@ -49,21 +49,24 @@ game.setAttribute('width', '800px')
 
 function drawBullet() {
 // X and Y position of bullet change to hero.x hero.y
-    let bullet = new Crawler(200, 200, 'purple', 10, 10)
+    let bullet = new Crawler(hero.x, hero.y, 'purple', 10, 10)
     bullet.render()
+    
 }
 
 function gameLoop () {
     ctx.clearRect(0, 0, game.width, game.height)
     hero.render()
+    
+    zombie.render()
     window.requestAnimationFrame (gameLoop) 
 }
 
 function keyDownHandler(e) {
     e.preventDefault()
-    console.log(e.code)
+    // console.log(e.code)
     if (e.code === 'KeyW') {
-        console.log('W pressed')
+        // console.log('W pressed')
         hero.y -= 10
     }
         if (hero.y === 600) {
@@ -71,19 +74,19 @@ function keyDownHandler(e) {
             console.log('stop')
         }
     if (e.code === 'KeyA') {
-        console.log('A pressed')
+        // console.log('A pressed')
         hero.x -= 10
     }
     if (e.code === 'KeyS') {
-        console.log('S pressed')
+        // console.log('S pressed')
         hero.y += 10
     }
     if (e.code === 'KeyD') {
-        console.log('D pressed')
+        // console.log('D pressed')
         hero.x += 10
     }
     if (e.code === 'Space') {
-        console.log('boom')
+        // console.log('boom')
         drawBullet()
     
     }
@@ -93,7 +96,9 @@ function keyDownHandler(e) {
 
 document.addEventListener('DOMContentLoaded', ()=>{
     console.log('dom content loaded')  
-    hero = new Crawler (50, 50 ,'red', 30, 70)
+    hero = new Crawler (50, 270 ,'red', 30, 70)
+    zombie = new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70)
+
     gameLoop()
     document.addEventListener('keydown', keyDownHandler)
     
