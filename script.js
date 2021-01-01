@@ -3,9 +3,12 @@
 // randomly generate enemie across y axis at varying speeds
 
 const game = document.getElementById('canvas')
+let start = document.getElementById('start')
 let ctx = game.getContext('2d')
 let hero;
 let zombie;
+let bullet;
+let gameOver = true;
 // let hero = {
 //     x: 200,
 //     y: 200,
@@ -49,17 +52,29 @@ game.setAttribute('width', '800px')
 
 function drawBullet() {
 // X and Y position of bullet change to hero.x hero.y
-    let bullet = new Crawler(hero.x, hero.y, 'purple', 10, 10)
     bullet.render()
     
 }
 
 function gameLoop () {
-    ctx.clearRect(0, 0, game.width, game.height)
-    hero.render()
-    
-    zombie.render()
-    window.requestAnimationFrame (gameLoop) 
+    if (gameOver == false) {
+        ctx.clearRect(0, 0, game.width, game.height)
+        hero.render()
+        zombie.render()
+        zombieMoves()
+        window.requestAnimationFrame (gameLoop) 
+    }
+
+}
+
+function zombieMoves() {
+    if (zombie.x > 0) {
+        zombie.x -= 1;
+    } else {
+        console.log('gameover')
+        gameOver = true
+        zombie.clearRect
+    }
 }
 
 function keyDownHandler(e) {
@@ -86,7 +101,7 @@ function keyDownHandler(e) {
         hero.x += 10
     }
     if (e.code === 'Space') {
-        // console.log('boom')
+        console.log('boom')
         drawBullet()
     
     }
@@ -97,12 +112,17 @@ function keyDownHandler(e) {
 document.addEventListener('DOMContentLoaded', ()=>{
     console.log('dom content loaded')  
     hero = new Crawler (50, 270 ,'red', 30, 70)
+    bullet = new Crawler (hero.x, hero.y, 'purple', 10, 10)
     zombie = new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70)
 
-    gameLoop()
+    
+    document.addEventListener('click', function (){
+        gameOver = false
+        gameLoop()
+    })
     document.addEventListener('keydown', keyDownHandler)
     
     // heroMovement()
     // drawBullet()
-    
+    console.log(ctx)
 })
