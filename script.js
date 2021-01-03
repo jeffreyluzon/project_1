@@ -7,28 +7,19 @@ let start = document.getElementById('start')
 let ctx = game.getContext('2d')
 let hero;
 let zombie;
-let bullet;
+// let bullet;
 let gameOver = true;
 let zombies = []
-// let hero = {
-//     x: 200,
-//     y: 200,
-//     width: 30,
-//     height: 70,
-//     render() {
-    
-//     }
- 
-// } 
+let bullets = []
+
 function addZombies() {
- 
     zombies.forEach((zombie, i) => {
-            zombie.render()
-            //add collision detection
-            console.log(zombies)
-            zombieMoves(zombie)
+        zombie.render()
+        //add collision detection
+        // console.log(zombies)
+        zombieMoves(zombie)
     })
- console.log('show zombie')
+//  console.log('show zombie')
 }
 // function zombieInterval () {
 //     setTimeout(addZombies(), 3000);
@@ -53,34 +44,38 @@ function Crawler (x, y, color, width, height) {
 game.setAttribute('height', '600px')
 game.setAttribute('width', '800px')
 
-// function heroMovement () {
 
-//     ctx.fillStyle = 'white'
-
-//     ctx.strokeStyle = 'red'
-
-//     ctx.lineWidth = 1
-
-//     ctx.fillRect(10, 10, 30, 70);
-//     ctx.strokeRect(10, 10, 30, 70);
-// }
-
-
-// function drawBullet() {
+function drawBullet() {
 // X and Y position of bullet change to hero.x hero.y
-//     bullet.render()
-    
-// }
+// render bullet to screem
+// update its position
+// how to continously render and update the bullet
+// add bullet when you press space
+
+}
 
 function gameLoop () {
     if (gameOver == false) {
         ctx.clearRect(0, 0, game.width, game.height)
         hero.render()
         // zombie.render()
-        bullet.render()
+        // bullet.render()
         addZombies()
+        console.log(bullets)
+        // if(bullets.length > 0) {
+        //     bullets.forEach((bullet, i) => {
+        //         bullet.render()
+        //         if (bullets.x < game.width) {
+        //             bullet.x += 10;
+        //         } else {
+        //             console.log(bullets)
+        //             // bullets.shift()
+        //         }
+            
+        //     })
+        // }
         window.requestAnimationFrame (gameLoop) 
-    }
+    } 
 
 }
 // make move forward
@@ -118,8 +113,9 @@ function keyDownHandler(e) {
         hero.x += 10
     }
     if (e.code === 'Space') {
-        console.log('boom')
-        drawBullet()
+        // console.log('boom')
+        // this adds 1 bullet to the bullets array
+        bullets.push(new Crawler (hero.x, hero.y, 'purple', 10, 10))
     
     }
 }
@@ -129,7 +125,7 @@ function keyDownHandler(e) {
 document.addEventListener('DOMContentLoaded', ()=>{
     console.log('dom content loaded')  
     hero = new Crawler (50, 270 ,'red', 30, 70)
-    bullet = new Crawler (hero.x, hero.y, 'purple', 10, 10)
+    // bullets = new Crawler (hero.x, hero.y, 'purple', 10, 10)
     zombies.push(new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70))
     // zombie = new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70)
   
