@@ -51,7 +51,15 @@ function drawBullet() {
 // update its position
 // how to continously render and update the bullet
 // add bullet when you press space
-
+    bullets.forEach(bullet => {
+        bullet.render()
+        
+        if (bullet.x < game.width) {
+            bullet.x += 10
+        } else {
+            bullets.shift()
+        }
+    })
 }
 
 function gameLoop () {
@@ -61,19 +69,8 @@ function gameLoop () {
         // zombie.render()
         // bullet.render()
         addZombies()
-        console.log(bullets)
-        // if(bullets.length > 0) {
-        //     bullets.forEach((bullet, i) => {
-        //         bullet.render()
-        //         if (bullets.x < game.width) {
-        //             bullet.x += 10;
-        //         } else {
-        //             console.log(bullets)
-        //             // bullets.shift()
-        //         }
-            
-        //     })
-        // }
+        // console.log(bullets)
+        drawBullet()
         window.requestAnimationFrame (gameLoop) 
     } 
 
