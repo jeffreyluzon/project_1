@@ -9,6 +9,7 @@ let hero;
 let zombie;
 let bullet;
 let gameOver = true;
+let zombies = []
 // let hero = {
 //     x: 200,
 //     y: 200,
@@ -19,6 +20,21 @@ let gameOver = true;
 //     }
  
 // } 
+function addZombies() {
+ 
+    zombies.forEach((zombie, i) => {
+            zombie.render()
+            //add collision detection
+            console.log(zombies)
+            zombieMoves(zombie)
+    })
+ console.log('show zombie')
+}
+// function zombieInterval () {
+//     setTimeout(addZombies(), 3000);
+// }
+
+
 function Crawler (x, y, color, width, height) {
     this.x = x
     this.y = y
@@ -60,15 +76,15 @@ function gameLoop () {
     if (gameOver == false) {
         ctx.clearRect(0, 0, game.width, game.height)
         hero.render()
-        zombie.render()
-        zombieMoves()
+        // zombie.render()
         bullet.render()
+        addZombies()
         window.requestAnimationFrame (gameLoop) 
     }
 
 }
-
-function zombieMoves() {
+// make move forward
+function zombieMoves(zombie) {
     if (zombie.x > 0) {
         zombie.x -= 1;
     } else {
@@ -114,12 +130,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
     console.log('dom content loaded')  
     hero = new Crawler (50, 270 ,'red', 30, 70)
     bullet = new Crawler (hero.x, hero.y, 'purple', 10, 10)
-    zombie = new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70)
-    zombie = new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70)
+    zombies.push(new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70))
+    // zombie = new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70)
+  
+    
     
     document.addEventListener('click', function (){
         gameOver = false
         gameLoop()
+        
     })
     document.addEventListener('keydown', keyDownHandler)
     
