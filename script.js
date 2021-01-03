@@ -50,11 +50,11 @@ game.setAttribute('width', '800px')
 // }
 
 
-function drawBullet() {
+// function drawBullet() {
 // X and Y position of bullet change to hero.x hero.y
-    bullet.render()
+//     bullet.render()
     
-}
+// }
 
 function gameLoop () {
     if (gameOver == false) {
@@ -62,6 +62,7 @@ function gameLoop () {
         hero.render()
         zombie.render()
         zombieMoves()
+        bullet.render()
         window.requestAnimationFrame (gameLoop) 
     }
 
@@ -76,7 +77,7 @@ function zombieMoves() {
         zombie.clearRect
     }
 }
-
+// key button mapping for moving
 function keyDownHandler(e) {
     e.preventDefault()
     // console.log(e.code)
@@ -94,7 +95,7 @@ function keyDownHandler(e) {
     }
     if (e.code === 'KeyS') {
         // console.log('S pressed')
-        hero.y += 10
+        hero.y += 10 
     }
     if (e.code === 'KeyD') {
         // console.log('D pressed')
@@ -114,7 +115,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     hero = new Crawler (50, 270 ,'red', 30, 70)
     bullet = new Crawler (hero.x, hero.y, 'purple', 10, 10)
     zombie = new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70)
-
+    zombie = new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70)
     
     document.addEventListener('click', function (){
         gameOver = false
