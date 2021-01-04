@@ -87,6 +87,7 @@ function gameLoop () {
         addZombies()
         // console.log(bullets)
         drawBullet()
+        bulletHit()
         window.requestAnimationFrame (gameLoop) 
     } 
 
@@ -116,7 +117,7 @@ function keyDownHandler(e) {
         // console.log('boom')
         // this adds 1 bullet to the bullets array
         bullets.push(new Crawler (hero.x, hero.y, 'purple', 10, 10))
-
+        
     }
     if (e.code === 'KeyE') {
         zombies.push(new Crawler (770, Math.floor(Math.random() * 530),'blue', 30, 70))
@@ -137,7 +138,16 @@ function keyDownHandler(e) {
     }
 }
 function bulletHit() {
-    if(bullets.x + bullets.width > zombies.x && bullets.x < zombie.width + zombie.x)
+    bullets.forEach(bullet =>{
+        zombies.forEach(zombie => {
+            if(bullet.x + bullet.width > zombie.x && bullet.x < zombie.width + zombie.x &&
+                bullet.y + bullet.height > zombie.y && bullet.y < zombie.height + zombie.y) {
+                zombies.splice(zombie, 1)
+                console.log('hit')
+            }   
+        }) 
+    })
+
 }
 
 
