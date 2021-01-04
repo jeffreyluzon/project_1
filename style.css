@@ -20,4 +20,5 @@ h2 {
 button {
     margin-top: 20px;
     width: 100px;
+    outline: none;
 }

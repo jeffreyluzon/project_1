@@ -14,10 +14,9 @@ let bullets = []
 
 function addZombies() {
     zombies.forEach((zombie, i) => {
-        zombie.render()
         //add collision detection
-        // console.log(zombies)
         zombieMoves(zombie)
+        zombie.render()
     })
 //  console.log('show zombie')
 }
@@ -75,7 +74,7 @@ function gameLoop () {
     } 
 
 }
-// make move forward
+// make ZOMBIE move forward
 function zombieMoves(zombie) {
     if (zombie.x > 0) {
         zombie.x -= 1;
@@ -128,7 +127,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   
     
     
-    document.addEventListener('click', function (){
+    start.addEventListener('click', function (){
         gameOver = false
         gameLoop()
         
@@ -137,5 +136,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
     
     // heroMovement()
     // drawBullet()
-    console.log(ctx)
+    
 })
