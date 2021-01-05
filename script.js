@@ -33,7 +33,7 @@ function addZombies() {
 // make ZOMBIE move forward
 function zombieMoves(zombie) {
     if (zombie.x > 0) {
-        zombie.x -= 1;
+        zombie.x -= 3;
     } else {
         console.log('gameover')
         gameOver = true
@@ -143,6 +143,7 @@ function bulletHit() {
             if(bullet.x + bullet.width > zombie.x && bullet.x < zombie.width + zombie.x &&
                 bullet.y + bullet.height > zombie.y && bullet.y < zombie.height + zombie.y) {
                 zombies.splice(zombie, 1)
+                bullets.splice(bullet, 1)
                 console.log('hit')
             }   
         }) 
@@ -163,7 +164,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     start.addEventListener('click', function (){
         gameOver = false
         gameLoop()
-        zombieInterval = setInterval(pushZombies, 3000);
+        zombieInterval = setInterval(pushZombies, 2000);
     })
     document.addEventListener('keydown', keyDownHandler)
     console.log(zombies)
