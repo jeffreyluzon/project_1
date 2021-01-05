@@ -5,6 +5,7 @@
 const game = document.getElementById('canvas')
 let start = document.getElementById('start')
 let ctx = game.getContext('2d')
+let scoreBoard = document.getElementById('score')
 let click = false
 let hero;
 let zombie;
@@ -14,16 +15,11 @@ let gameOver = true;
 let zombies = []
 let bullets = []
 
-
 //zombie shit
 function addZombies() {
     zombies.forEach((zombie, i) => {
-        //add collision detection
         zombieMoves(zombie)
         zombie.render()
-        
-        // zombies.push(new Crawler (770, Math.floor(Math.random() * 600),'blue', 30, 70))
-
     })
 //  console.log('show zombie')
 }
@@ -90,6 +86,10 @@ function gameLoop () {
 
 }
 
+function youWin (){
+
+}
+
 // key button mapping for moving
 function keyDownHandler(e) {
     e.preventDefault()
@@ -121,6 +121,7 @@ function keyDownHandler(e) {
         console.log('E pressed')
         console.log(zombies)
     } 
+    //this is for boundaries for hero
     if (hero.x > game.width - hero.width) {
         hero.x = game.width - hero.width
     }
@@ -171,7 +172,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }, 50001);
     })
     document.addEventListener('keydown', keyDownHandler)
-    console.log(zombies)
-    // heroMovement()
-    // drawBullet()
 })
