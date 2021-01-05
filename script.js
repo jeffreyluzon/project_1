@@ -14,10 +14,7 @@ let gameOver = true;
 let zombies = []
 let bullets = []
 
-function pushZombies() {
-    zombies.push(new Crawler (770, Math.floor(Math.random() * (600-70)),'blue', 30, 70))
 
-}
 //zombie shit
 function addZombies() {
     zombies.forEach((zombie, i) => {
@@ -153,6 +150,9 @@ function bulletHit() {
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
+    function pushZombies() {
+        zombies.push(new Crawler (770, Math.floor(Math.random() * (600-70)),'blue', 30, 70))
+    }
     console.log('dom content loaded')  
     hero = new Crawler (50, 270 ,'red', 30, 70)
     // bullets = new Crawler (hero.x, hero.y, 'purple', 10, 10)
@@ -164,7 +164,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     start.addEventListener('click', function (){
         gameOver = false
         gameLoop()
+            // zombieInterval = setTimeout(pushZombies, 2000);
         zombieInterval = setInterval(pushZombies, 2000);
+        zombieKillInterval = setTimeout(() => {
+            clearInterval(zombieInterval)
+        }, 50001);
     })
     document.addEventListener('keydown', keyDownHandler)
     console.log(zombies)
