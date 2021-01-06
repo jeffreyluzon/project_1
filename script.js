@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         zombieInterval = setInterval(pushZombies, 2000);
         zombieKillInterval = setTimeout(() => {
             clearInterval(zombieInterval)
-        }, 50001);
+        }, 6001);
     })
     document.addEventListener('keydown', keyDownHandler)
 })
